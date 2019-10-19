@@ -7,5 +7,7 @@ namespace SpaceSnapApi.Models
 {
 	public class LabelsModel
 	{
+        public string Description {get; set;}
+        public float Score {get; set; }
 	}
 }
