@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Google.Cloud.Vision.V1;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis;
 
 namespace SpaceSnapApi.Controllers
 {
@@ -39,6 +38,8 @@ namespace SpaceSnapApi.Controllers
             //.ToArray();
 
             var client = ImageAnnotatorClient.Create();
+			//ImageAnnotatorClient.Create()
+
             var image = Image.FromUri("gs://cloud-vision-codelab/otter_crossing.jpg");
             var response = client.DetectText(image);
             foreach (var annotation in response)
@@ -48,7 +49,6 @@ namespace SpaceSnapApi.Controllers
                     Console.WriteLine(annotation.Description);
                 }
             }
-
 			var rng = new Random();
 			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
 			{
