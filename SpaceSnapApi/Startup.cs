@@ -17,7 +17,7 @@ namespace SpaceSnapApi
 	{
 		public Startup(IConfiguration configuration)
 		{
-			Configuration = configuration;
+			Configuration = configuration;//dasfdafs
 		}
 
 		public IConfiguration Configuration { get; }
