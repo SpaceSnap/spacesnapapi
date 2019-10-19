@@ -54,7 +54,10 @@
         <div class="loading"></div>
     </div>
     <a-scene screenshot="width: 1000;height: 1000">
-        <a-sky radius="100" alert-on-click='' src="space-station-360-columbus_26356247791_o.jpg" rotation="0 -130 0">
+        <a-assets>
+            <img id="sky" src="space-station-360-columbus_26356247791_o.jpg">
+        </a-assets>
+        <a-sky src="#sky" radius="100" alert-on-click=''></a-sky>
         </a-sky>
         <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
         <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
