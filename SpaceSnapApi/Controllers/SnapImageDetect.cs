@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Google.Cloud.Vision.V1;
 using Google.Apis.Auth.OAuth2;
+using SpaceSnapApi.Models;
 
 namespace SpaceSnapApi.Controllers
 {
@@ -26,19 +27,25 @@ namespace SpaceSnapApi.Controllers
         {
             var client = ImageAnnotatorClient.Create();
 			//ImageAnnotatorClient.Create()
-
+            var labelsModel = new LabelsModel();
+            var labelsModelList = new List<LabelsModel>();
             var image = Image.FromUri("gs://cloud-vision-codelab/otter_crossing.jpg");
+
             //var response = client.DetectText(image);
 			var response = await client.DetectLabelsAsync(image);
-            foreach (var annotation in response)
-            {
-                if (annotation.Description != null)
-                {
-                    Console.WriteLine(annotation.Description);
-                }
-            }
 
-			return Ok("Success");
+            foreach (var label in response)
+            {
+                var label2 = new LabelsModel();
+                if (label != null)
+                {
+                    label2.Description= label.Description;
+                    label2.Score = label.Score;
+                }
+
+                labelsModelList.Add(label2);
+            };
+			return Ok(labelsModelList);
 		}
 	}
 }
