@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "spacesnapapi",
+      "launchUrl": "snapimagedetect",
       "environmentVariables": {
         "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\Daniel\\Downloads\\spacesnap-aec2e802830c.json",
         "ASPNETCORE_ENVIRONMENT": "Development"
