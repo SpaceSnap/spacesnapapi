@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Google.Cloud.Vision.V1;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis;
 
 namespace SpaceSnapApi.Controllers
 {
