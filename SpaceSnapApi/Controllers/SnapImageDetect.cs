@@ -24,21 +24,12 @@ namespace SpaceSnapApi.Controllers
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            //var rng = new Random();
-            //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            //{
-            //    Date = DateTime.Now.AddDays(index),
-            //    TemperatureC = rng.Next(-20, 55),
-            //    Summary = Summaries[rng.Next(Summaries.Length)]
-            //})
-            //.ToArray();
-
             var client = ImageAnnotatorClient.Create();
 			//ImageAnnotatorClient.Create()
 
             var image = Image.FromUri("gs://cloud-vision-codelab/otter_crossing.jpg");
             //var response = client.DetectText(image);
-			var response = client.DetectLabels(image);
+			var response = await client.DetectLabelsAsync(image);
             foreach (var annotation in response)
             {
                 if (annotation.Description != null)
