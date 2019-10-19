@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "launchUrl": "snapimagedetect",
       "environmentVariables": {
-        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\Daniel\\Downloads\\spacesnap-aec2e802830c.json",
+        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\jygib\\Downloads\\spacesnap-aec2e802830c.json",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
