@@ -10,28 +10,9 @@
     <meta http-equiv="pragma" content="no-cache" />
     <title>Space Snap View</title>
     <meta name="description" content="360&deg; Image - A-Frame">
+    <link rel="stylesheet" href="capture.css">
     <script src="aframe-master.js"></script>
     <script>
-        AFRAME.registerComponent('change-color-on-click', {
-            // Could use a schem to preserve the color! then simply change it on update
-            // if clicked?
-            init: function () {
-                var COLORS = [
-                    'pink',
-                    //'blue',
-                    'yellow',
-                    'red',
-                    'peachpuff',
-                    '#2EAFAC',
-                    '#BAE'];
-                this.el.addEventListener('click', function (evt) {
-                    var randomIndex = Math.floor(Math.random() * COLORS.length);
-                    var newColor = COLORS[randomIndex];
-                    this.setAttribute('material', 'color', newColor);
-                    console.log('I was clicked at: ', evt.detail.intersection.point, "and my new color is: ", newColor);
-                });
-            }
-        });
         AFRAME.registerComponent('alert-on-click', {
             init: function () {
                 this.el.addEventListener('click', function (evt) {
@@ -41,20 +22,41 @@
         });
     </script>
     <script>
-        window.addEventListener("click", function(event) {
-            myclickhandler();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var scene = document.querySelector('a-scene');
+            var splash = document.querySelector('#splash');
+            scene.addEventListener('loaded', function (e) {
+                splash.style.display = 'none';
+            });
         });
+
         function myclickhandler() {
-            console.log('click!')
-            alert("hey! that hurt");
+            var img = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
+            var imgBlob = img.toBlob(function (blob) {
+                sendBlob(blob);
+            });
+            document.querySelector('a-scene').components.screenshot.capture('perspective');
+        }
+
+        function sendBlob(blob) {
+            console.log(blob);
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", theUrl, false); // false for synchronous request
+            xmlHttp.send(null);
+            return xmlHttp.responseText;
         }
     </script>
 </head>
 
 <body>
-    <a-scene>
-        <a-sky radius="100" alert-on-click='' src="space-station-360-columbus_26356247791_o.jpg" rotation="0 -130 0"></a-sky>
-        <a-box change-color-on-click='' position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+    <div id="splash">
+        <div class="loading"></div>
+    </div>
+    <a-scene screenshot="width: 1000;height: 1000">
+        <a-sky radius="100" alert-on-click='' src="space-station-360-columbus_26356247791_o.jpg" rotation="0 -130 0">
+        </a-sky>
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
         <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
         <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
         <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
