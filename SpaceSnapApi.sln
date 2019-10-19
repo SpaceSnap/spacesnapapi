@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceSnapApi", "SpaceSnapApi\SpaceSnapApi.csproj", "{5444030F-118A-4576-A01B-84A95FC9AE29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5444030F-118A-4576-A01B-84A95FC9AE29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5444030F-118A-4576-A01B-84A95FC9AE29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5444030F-118A-4576-A01B-84A95FC9AE29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5444030F-118A-4576-A01B-84A95FC9AE29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B45B2576-119E-4DD5-BE87-24349EBC8E67}
+	EndGlobalSection
+EndGlobal
