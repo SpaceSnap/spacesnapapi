@@ -12,11 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-			"environmentVariables": {
-				"ASPNETCORE_ENVIRONMENT": "Development",
-				"GOOGLE_APPLICATION_CREDENTIALS": "C:\\Users\\Daniel\\Downloads\\spacesnap-aec2e802830c.json"
-			}
+      "launchUrl": "weatherforecast"
     },
     "SpaceSnapApi": {
       "commandName": "Project",
