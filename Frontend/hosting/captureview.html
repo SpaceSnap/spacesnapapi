@@ -22,6 +22,33 @@
         });
     </script>
     <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadProps();
+        });
+
+        function loadProps() {
+            var props = getURL();
+            if (props.background){
+                var sky = document.querySelector('a-sky');
+                console.log('have background', props.background);
+                switch(props.background) {
+                    case "0":
+                        sky.setAttribute("src","#iss")
+                        break;
+                    case "1":
+                        sky.setAttribute("src","#moon")
+                        break;
+                    case "2":
+                        sky.setAttribute("src","#mars")
+                        break;
+                    default:
+                        // code block
+                }
+            }
+        }
+
+
         function myclickhandler() {
             var img = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
             var imgBlob = img.toBlob(function (blob) {
@@ -32,10 +59,18 @@
 
         function sendBlob(blob) {
             console.log(blob);
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", theUrl, false); // false for synchronous request
-            xmlHttp.send(null);
-            return xmlHttp.responseText;
+            // var xmlHttp = new XMLHttpRequest();
+            // xmlHttp.open("GET", theUrl, false); // false for synchronous request
+            // xmlHttp.send(null);
+            // return xmlHttp.responseText;
+        }
+
+        function getURL(){
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
         }
     </script>
 </head>
@@ -43,12 +78,15 @@
 <body>
     <a-scene screenshot="width: 1000;height: 1000">
         <a-assets>
-            <img id="sky" src="mars_rover.jpg">
+            <img id="iss" src="iss.jpg">
+            <img id="moon" src="moon.jpg">
+            <img id="mars" src="mars.jpg">
         </a-assets>
-        <a-sky src="#sky" radius="100" alert-on-click=''></a-sky>
+        <a-sky src="#iss" radius="100" alert-on-click=''></a-sky>
         </a-sky>
         <a-entity id="rig" position="0 0 0">
             <a-entity id="camera" camera look-controls position="0 1.6 0">
+                <a-cursor raycaster="objects: a-sky" fuse="false"></a-cursor>
             </a-entity>
         </a-entity>
     </a-scene>
