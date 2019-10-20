@@ -92,7 +92,7 @@
 
             var sceneCanvas = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
             var offscreenCanvas = document.createElement('canvas');
-            reduceCanvas(sceneCanvas, offscreenCanvas, width/400);
+            reduceCanvas(sceneCanvas, offscreenCanvas, width/300);
 
             var dataurl = offscreenCanvas.toDataURL();
             sendBlob(dataurl);
