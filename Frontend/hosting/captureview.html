@@ -53,11 +53,34 @@
 
 
         function myclickhandler() {
-            var img = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
-            var imgBlob = img.toBlob(function (blob) {
-                sendBlob(blob);
-            });
-            document.querySelector('a-scene').components.screenshot.capture('perspective');
+            var sceneCanvas = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
+
+            var sourceX = sceneCanvas.width / 4;
+            var sourceY = sceneCanvas.height / 4;
+            var sourceWidth = sceneCanvas.width/2;
+            var sourceHeight = sceneCanvas.height/2;
+            var destWidth = 0;
+            var destHeight = 0;
+            var outWidth = sceneCanvas.width / 2;
+            var outHeight = sceneCanvas.height/2;
+
+            var offscreenCanvas = document.createElement('canvas');
+            offscreenCanvas.width = outWidth;
+            offscreenCanvas.height = outHeight;
+
+
+            var context = offscreenCanvas.getContext('2d');
+            context.drawImage(sceneCanvas, sourceX, sourceY, sourceWidth, sourceHeight, destWidth, destHeight, outHeight, outerWidth );
+
+            var dataURL = offscreenCanvas.toDataURL("image/jpg");
+
+            var downloadLink = document.createElement('a');
+            downloadLink.href = dataURL;
+            downloadLink.download = 'myImage.png';
+
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
         }
 
         function sendBlob(blob) {
@@ -79,7 +102,7 @@
 </head>
 
 <body>
-    <a-scene screenshot="width: 1000;height: 1000">
+    <a-scene>
         <a-assets>
             <img id="iss" src="iss.jpg">
             <img id="moon" src="moon.jpg">
