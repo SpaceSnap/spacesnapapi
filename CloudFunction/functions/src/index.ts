@@ -6,3 +6,9 @@ import * as functions from 'firebase-functions';
 export const helloWorld = functions.https.onRequest((request, response) => {
  response.send("Hello from Firebase!");
 });
+
+export const searchStrings = functions.https.onRequest((request, response)=>{
+    let list: string[] = ["machine", "rover", "technology", "space"];
+    response.send(list);
+});
+
