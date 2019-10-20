@@ -19,6 +19,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<!--<script src="~/scripts/jquery-3.4.1.js"></script>-->
 	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+	<script src="captureview.js"></script>
 	<script>
 		AFRAME.registerComponent('alert-on-click', {
 			init: function () {
@@ -141,11 +142,6 @@
 			});
 			return vars;
 		}
-
-		function loadResults(data) {
-			console.log('test ' + data);
-		}	
-
 	</script>
 </head>
 
@@ -168,9 +164,9 @@
 		</a-scene>
 	</div>
 
-	<div class="container-fluid" id="results-container">
+	<div class="container-fluid" id="results-container" hidden>
 		<h1 class="display-4">Analyzing</h1>
-		<div class="card" id="results-card" style="width:400px" hidden>
+		<div class="card" id="results-card" style="width:400px">
 			<img class="card-img-top" src="" id="pic-image" alt="Card image">
 			<div class="card-body">
 				<h4 class="card-title" id="">Results</h4>
