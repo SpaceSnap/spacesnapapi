@@ -102,7 +102,7 @@
 		}
 
 		function sendBlob(dataURL) {
-			console.log(dataURL);
+            document.querySelector('#pic-image').setAttribute("src",dataURL);
 
 			var key = "AIzaSyBM24os1UIblBdKk04ZvplQDSswBxBExak";
 			var request = {
