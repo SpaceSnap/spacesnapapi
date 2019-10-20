@@ -12,6 +12,11 @@
 	<meta name="description" content="360&deg; Image - A-Frame">
 	<link rel="stylesheet" href="capture.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+		.results-ul {
+			list-style-type: none;
+		}
+	</style>
 	<script src="aframe-master.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -135,8 +140,8 @@
 				contentType: 'application/json',
 				data: JSON.stringify(request),
 				success: function (data) {
+					console.log("Data: " + JSON.stringify(data));
 					loadResults(data.responses[0].labelAnnotations);
-					console.log("Data: " + data);
 				},
 				error: function (data, textStatus, errorThrown) {
 					console.log('error: ' + errorThrown);
@@ -172,29 +177,28 @@
 		</a-scene>
 	</div>
 
-	<div id="vue-app">
-		<div class="container-fluid" id="results-container" hidden>
-			<h1 class="display-4">Analyzing</h1>
-			<div class="card" id="results-card" style="width:400px">
-				<img class="card-img-top" src="" id="pic-image" alt="Card image">
-				<div class="card-body">
-					<h4 class="card-title" id="">Results</h4>
-					<ul>
-						<li id="pic-description0"></li>
-						<li id="pic-score0"></li>
-					</ul>
-					<ul>
-						<li id="pic-description1"></li>
-						<li id="pic-score1"></li>
-					</ul>
-					<ul>
-						<li id="pic-description2"></li>
-						<li id="pic-score2"></li>
-					</ul>
-					<p class="card-text" ></p>
-					<p class="card-text" ></p>
-					<a href="start.html" class="btn btn-primary">Start Again?</a>
-				</div>
+	<div class="container-fluid" id="results-container" hidden>
+		<h1 class="display-4">Analyzing</h1>
+		<div class="card" id="results-card" style="width:400px">
+			<img class="card-img-top" src="" id="pic-image" alt="Card image">
+			<div class="card-body">
+				<h4 class="card-title" id="results-loading">Results Loading...</h4>
+				<h4 class="card-title" id="results-loaded" hidden>Results</h4>
+				<ul class="results-ul">
+					<li id="pic-description0"></li>
+					<li id="pic-score0"></li>
+				</ul>
+				<ul class="results-ul">
+					<li id="pic-description1"></li>
+					<li id="pic-score1"></li>
+				</ul>
+				<ul class="results-ul">
+					<li id="pic-description2"></li>
+					<li id="pic-score2"></li>
+				</ul>
+				<p class="card-text" ></p>
+				<p class="card-text" ></p>
+				<a href="start.html" class="btn btn-primary">Start Again?</a>
 			</div>
 		</div>
 	</div>
