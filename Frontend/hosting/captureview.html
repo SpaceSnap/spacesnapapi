@@ -113,8 +113,10 @@
 		}
 
         function reduceCanvas(canvasin, canvasout, factor) {
+            var sourceWidth = canvasin.width / factor;
+            var sourceHeight = canvasin.width / factor;
             var sourceX = (canvasin.width - (canvasin.width / factor)) / 2;
-            var sourceY = (canvasin.height - (canvasin.height / factor)) / 2;
+            var sourceY = (canvasin.height / 2) - ((canvasin.width / factor) / 2);
             var sourceWidth = canvasin.width / factor;
             var sourceHeight = canvasin.height / factor;
             var destWidth = 0;
@@ -125,7 +127,7 @@
             canvasout.width = outWidth;
             canvasout.height = outWidth;
 
-            var imgdata = canvasin.getContext('2d').getImageData(sourceX, sourceY - (sourceWidth / 4), sourceWidth, sourceWidth);
+            var imgdata = canvasin.getContext('2d').getImageData(sourceX, sourceY, sourceWidth, sourceHeight);
             canvasout.getContext('2d').putImageData(imgdata, 0, 0);
         }
 
@@ -189,10 +191,10 @@
 		</a-scene>
 	</div>
 
-	<div class="container-fluid" id="results-container" hidden>
+	<div class="container-fluid" id="results-container" hidden style="overflow: scroll;">
 		<h1 class="display-4">Analyzing</h1>
 		<div class="card" id="results-card" style="width:400px">
-			<img class="card-img-top" src="" id="pic-image" alt="Card image">
+			<img class="card-img-top" src="" id="pic-image" alt="Card image" height="100" style="width: 100px !important">
 			<div class="card-body">
 				<h4 class="card-title" id="results-loading">Results Loading...</h4>
 				<h4 class="card-title" id="results-loaded" hidden>Results</h4>
