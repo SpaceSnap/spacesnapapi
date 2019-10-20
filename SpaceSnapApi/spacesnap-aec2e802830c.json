@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "spacesnap",
+  "private_key_id": "aec2e802830c5d0a6f50199feece18574ef9a42d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKVg1WUX/mpyFA\n4vu6sj9TeXAK1kzhRLekZoU4wuTQ8L+EpkutUmlwZ+0J662NHP6wLdomKBRaE0lD\nAFMUMf9L2attRdNJMnQtyG67Bzl8a/2LGzrEwWoBTbeu+V4sqa+dKj3rSHdQ2dki\nkzt767Idm2QxYJ2BrrnoZ3ZrRQkQyGlY2nAJsn9WIEFCv8OhoJB1oulf4PgDNMyf\nlYZfiLya/PfWjOwTKIG1BrK0DdLBOBACc20Jdb/gDYnKrK3RpdK8gdKlXceCpNvj\nWjSMsNaSGkAK5H3HeeeACyEO+C/j4L4YzvqyKggTpGlKIIz4Xy0WHyE36sdgZ/MV\n3ADqRMuNAgMBAAECggEAIQ6vcyYxnVTk9p2fFGuW3mPSzb0he78nDxxo26iL4HnU\n8IPdjV26OFE3xbfUTQqAWfcZKG7ClHeI2qzXkKRyhMlKsWRdFsfAJNLAX0eDjt5z\nOCJPbGH6mGftgLrhNgQrME78es+wyWwuMPCZIVqVaTJAIQkbSAVsqO8ZG9bVmlYO\noinOaH1JY/mg5KaodHOcLQFiM91Gwqmv509DS7zyvfbPCyUM1TcnPTVN6+dVxA6b\nfwcFF2/fjL2ASiYbBzvkPhDzU1g0so/D7l3ys6VoVEKvpcy1yyvWWo8vl15xZDtK\nXP8nn3jbCwGWX2R1TMxIz/w486BMxbHY6CKOg+AXSQKBgQD5Y4HcB5x0IzGQ/2jK\nuZ+/WNQBGCeo312AzOWIXIwnWwNa2RJxBR15ufv5aG8Jl/ftqz7rIEviAc3aQvwL\nBn+zwJcqCt83NcNyXeKCzDG1ZB4Hl49mE7gZK9sQmLv7EKPwj8CF2UuzE0drAMBg\nAxp4GnsoJkLDxihVHF9stL6yQwKBgQDPszg1NeFFlgi6eTF0701DKLGIyk99VVZp\n+N2s785Q3V6o6e9Irjd9oqlrb2vufUoG8yh8h0H1ighaFpNkIuNpdAGT7FqCFIIh\nsi4TzcmM67vDszE9Ma+RIPAtH46L0j+4sijKBwBJRgCsFJznSh9zSnusDeFzFObq\ntNlku1G17wKBgQDkLYp0gjZBAK5qR3Ze/gXOsnyPX8VxuqU3osFkyaCmpZxlM/Wu\nmQqGBIgqg8YMlhIPUD6qLQuhBxuM1vr7L4AKPG1S102ymytvab1FBYV5vNfJBH/8\n2o/33+t4vPZJ2cjV4wE4tj+P4lTW74IUluJR/5CthIxTyeu/K82XjaxpNwKBgHnB\nI8f9h8sVApTdiqJzzaT66+e2QRbFudxxaPGBuj4pJt56FC1VA26AtjQmouyxQX4F\neMxXNdFMU00MQubGlO0ydeJTAVOT1h0OqHgvgGE9p1o3ZzvqLnMzDdhF0Xghjf0l\nY0fbBs3tXWOCyd/D0d/x38GieXDO5fbcgTvNmz69AoGBAID00tFrc6v1fcV1CdZn\nairuOJw1UI+Men/ZBKbUWLm6qs66ziihfJdnumEq746EeNTcRUDGllBF6CHZu3Oz\noLdXyS28i0wQ1Dg8rVfikpNlfAm4ZRtUN3wau+2iMnwUWhTmMYmFEpiLhbdgT96h\ndFAevk4RJVRmhI9GYcKpArzW\n-----END PRIVATE KEY-----\n",
+  "client_email": "jygibson@spacesnap.iam.gserviceaccount.com",
+  "client_id": "113574501894915837854",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jygibson%40spacesnap.iam.gserviceaccount.com"
+}
