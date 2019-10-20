@@ -52,16 +52,15 @@
             }
         }
 
-
         function myclickhandler() {
             var sceneCanvas = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
             var offscreenCanvas = document.createElement('canvas');
 
             var context = reduceCanvas(sceneCanvas,offscreenCanvas,2);
 
-            offscreenCanvas.toBlob(function(blob){
-                sendBlob(blob);
-            })
+            var dataurl = offscreenCanvas.toDataURL();
+            sendBlob(dataurl);
+
         }
 
         function reduceCanvas(canvasin, canvasout, factor){
@@ -84,17 +83,14 @@
             return context;
         }
 
-        function sendBlob(blob) {
-            console.log(blob);
+        function sendBlob(dataURL) {
+            console.log(dataURL);
 
-            var url = "https://storage.googleapis.com/cloud-vision-codelab/otter_crossing.jpg";
             var key = "AIzaSyBM24os1UIblBdKk04ZvplQDSswBxBExak";
             var request = {
                 "requests": [{
                     "image": {
-                        "source": {
-                            "imageUri": url,
-                        }
+                        "content": dataURL.split(',')[1]
                     },
                     "features": [{
                         "type": "LABEL_DETECTION",
