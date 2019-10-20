@@ -2,93 +2,112 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="cache-control" content="max-age=0" />
-	<meta http-equiv="cache-control" content="no-cache" />
-	<meta http-equiv="expires" content="0" />
-	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-	<meta http-equiv="pragma" content="no-cache" />
-	<title>Space Snap View</title>
-	<meta name="description" content="360&deg; Image - A-Frame">
-	<link rel="stylesheet" href="capture.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="aframe-master.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<!--<script src="~/scripts/jquery-3.4.1.js"></script>-->
-	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
-	<script src="captureview.js"></script>
-	<script>
-		AFRAME.registerComponent('alert-on-click', {
-			init: function () {
-				this.el.addEventListener('click', function (evt) {
-					myclickhandler();
-				});
-			}
-		});
-	</script>
-	<script>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <title>Space Snap View</title>
+    <meta name="description" content="360&deg; Image - A-Frame">
+    <link rel="stylesheet" href="capture.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="aframe-master.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!--<script src="~/scripts/jquery-3.4.1.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src="captureview.js"></script>
+    <script>
+        AFRAME.registerComponent('alert-on-click', {
+            init: function () {
+                this.el.addEventListener('click', function (evt) {
+                    myclickhandler();
+                });
+            }
+        });
+    </script>
+    <script>
 
-		document.addEventListener('DOMContentLoaded', function () {
-			loadProps();
-		});
+        document.addEventListener('DOMContentLoaded', function () {
+            loadProps();
+        });
 
-		function loadProps() {
-			var props = getURL();
-			if (props.background) {
-				var sky = document.querySelector('a-sky');
-				console.log('have background', props.background);
-				switch (props.background) {
-					case "0":
-						sky.setAttribute("src", "#iss")
-						break;
-					case "1":
-						sky.setAttribute("src", "#moon")
-						break;
-					case "2":
-						sky.setAttribute("src", "#mars")
-						break;
-					case "21":
-						sky.setAttribute("src", "#mars2")
-						break;
-					default:
-					// code block
-				}
-			}
+        function loadProps() {
+            var props = getURL();
+            if (props.background) {
+                var sky = document.querySelector('a-sky');
+                console.log('have background', props.background);
+                switch (props.background) {
+                    case "0":
+                        sky.setAttribute("src", "#iss")
+                        break;
+                    case "1":
+                        sky.setAttribute("src", "#moon")
+                        break;
+                    case "2":
+                        sky.setAttribute("src", "#mars")
+                        break;
+                    case "21":
+                        sky.setAttribute("src", "#mars2")
+                        break;
+                    default:
+                    // code block
+                }
+            }
         }
-        
+
         function myclickhandler() {
             $('#a-frame-container').hide();
             $('#results-card').hide();
             $('#results-container').removeAttr('hidden');
 
-            setTimeout(function() {
+            setTimeout(function () {
                 doCanvasWork();
             }, 5);
 
-            
+
             //showCanvas(offscreenCanvas);
             //showBlob(dataurl);
         }
 
-        function doCanvasWork(){
+        function doCanvasWork() {
+            var height = $(window).height();
+            var width = $(window).width();
+
+            var ratio = height / width;
+            var baseHeight = 4000;
+            var baseWidth  = Math.trunc(baseHeight / ratio);
+
+            var scene = $('a-scene');
+            var attribute = 'width:' + baseWidth + '; height:' + baseHeight;
+            document.querySelector('a-scene').removeAttribute('screenshot');
+            document.querySelector('a-scene').setAttribute('screenshot',attribute);
+
             var sceneCanvas = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
             var offscreenCanvas = document.createElement('canvas');
 
-            reduceCanvas(sceneCanvas,offscreenCanvas,3);
+
+
+            reduceCanvas(sceneCanvas, offscreenCanvas, width/400);
 
             var dataurl = offscreenCanvas.toDataURL();
             sendBlob(dataurl);
         }
 
-        function showCanvas(canvas){
+        function showCanvas(canvas) {
             var w = window.open("");
             w.document.body.appendChild(canvas);
         }
 
-        function showBlob(dataURL){
+        function showBlob(dataURL) {
             var image = new Image();
             image.src = dataURL;
 
@@ -96,94 +115,96 @@
             w.document.write(image.outerHTML);
         }
 
-		function reduceCanvas(canvasin, canvasout, factor) {
-			var sourceX = (canvasin.width - (canvasin.width / factor)) /2;
-			var sourceY = (canvasin.height - (canvasin.height / factor)) /2;
-			var sourceWidth = canvasin.width / factor;
-			var sourceHeight = canvasin.height / factor;
-			var destWidth = 0;
-			var destHeight = 0;
-			var outWidth = canvasin.width / factor;
-			var outHeight = canvasin.height / factor;
+        function reduceCanvas(canvasin, canvasout, factor) {
+            var sourceX = (canvasin.width - (canvasin.width / factor)) / 2;
+            var sourceY = (canvasin.height - (canvasin.height / factor)) / 2;
+            var sourceWidth = canvasin.width / factor;
+            var sourceHeight = canvasin.height / factor;
+            var destWidth = 0;
+            var destHeight = 0;
+            var outWidth = canvasin.width / factor;
+            var outHeight = canvasin.height / factor;
 
-			canvasout.width = outWidth;
-            canvasout.height = outHeight;
+            canvasout.width = outWidth;
+            canvasout.height = outWidth;
 
-            var imgdata = canvasin.getContext('2d').getImageData(sourceX, sourceY, sourceWidth, sourceHeight);
-            canvasout.getContext('2d').putImageData(imgdata,0,0);
-		}
+            var imgdata = canvasin.getContext('2d').getImageData(sourceX, sourceY - (sourceWidth / 2), sourceWidth, sourceWidth);
+            canvasout.getContext('2d').putImageData(imgdata, 0, 0);
+        }
 
-		function sendBlob(dataURL) {
-            document.querySelector('#pic-image').setAttribute("src",dataURL);
+        function sendBlob(dataURL) {
+            document.querySelector('#pic-image').setAttribute("src", dataURL);
             $('#results-card').show();
 
-			var key = "AIzaSyBM24os1UIblBdKk04ZvplQDSswBxBExak";
-			var request = {
-				"requests": [{
-					"image": {
-						"content": dataURL.split(',')[1]
-					},
-					"features": [{
-						"type": "LABEL_DETECTION",
-						"maxResults": 10
-					}]
-				}]
-			}
+            var key = "AIzaSyBM24os1UIblBdKk04ZvplQDSswBxBExak";
+            var request = {
+                "requests": [{
+                    "image": {
+                        "content": dataURL.split(',')[1]
+                    },
+                    "features": [{
+                        "type": "LABEL_DETECTION",
+                        "maxResults": 10
+                    }]
+                }]
+            }
 
-			$.ajax({
-				method: 'POST',
-				url: 'https://vision.googleapis.com/v1/images:annotate?key=' + key,
-				contentType: 'application/json',
-				data: JSON.stringify(request),
-				success: function (data) {
-					loadResults(data.responses[0].labelAnnotations);
-					console.log("Data: " + data);
-				},
-				error: function (data, textStatus, errorThrown) {
-					console.log('error: ' + errorThrown);
-				}
+            $.ajax({
+                method: 'POST',
+                url: 'https://vision.googleapis.com/v1/images:annotate?key=' + key,
+                contentType: 'application/json',
+                data: JSON.stringify(request),
+                success: function (data) {
+                    loadResults(data.responses[0].labelAnnotations);
+                    console.log("Data: " + data);
+                },
+                error: function (data, textStatus, errorThrown) {
+                    console.log('error: ' + errorThrown);
+                }
             });
-		}
+        }
 
-		function getURL() {
-			var vars = {};
-			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-				vars[key] = value;
-			});
-			return vars;
-		}
-	</script>
+        function getURL() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+    </script>
 </head>
 
 <body>
-	<div id="a-frame-container">
-		<a-scene screenshot="width:4096; height:4096">
-			<a-assets>
-				<img id="iss" src="iss.jpg">
-				<img id="moon" src="moon.jpg">
-				<img id="mars" src="mars.jpg">
-				<img id="mars2" src="mars2.jpg">
-			</a-assets>
-			<a-sky src="#iss" radius="100" alert-on-click=''></a-sky>
-			<a-entity id="rig" position="0 0 0">
-				<a-entity id="camera" camera look-controls position="0 1.6 0">
-					<a-cursor raycaster="objects: a-sky" fuse="false" geometry="primitive: ring; radiusInner: 0.49; radiusOuter: 0.5"></a-cursor>
-				</a-entity>
-			</a-entity>
-		</a-scene>
-	</div>
+    <div id="a-frame-container">
+        <a-scene screenshot="width:4096; height:4096">
+            <a-assets>
+                <img id="iss" src="iss.jpg">
+                <img id="moon" src="moon.jpg">
+                <img id="mars" src="mars.jpg">
+                <img id="mars2" src="mars2.jpg">
+            </a-assets>
+            <a-sky src="#iss" radius="100" alert-on-click=''></a-sky>
+            <a-entity id="rig" position="0 0 0">
+                <a-entity id="camera" camera look-controls position="0 1.6 0">
+                    <a-cursor raycaster="objects: a-sky" fuse="false"
+                        geometry="primitive: ring; radiusInner: 0.49; radiusOuter: 0.5"></a-cursor>
+                </a-entity>
+            </a-entity>
+        </a-scene>
+    </div>
 
-	<div class="container-fluid" id="results-container" hidden>
-		<h1 class="display-4">Analyzing</h1>
-		<div class="card" id="results-card" style="width:400px">
-			<img class="card-img-top" src="" id="pic-image" alt="Card image">
-			<div class="card-body">
-				<h4 class="card-title" id="">Results</h4>
-				<p class="card-text" id="pic-description"></p>
-				<p class="card-text" id="pic-score"></p>
-				<a href="start.html" class="btn btn-primary">Start Again?</a>
-			</div>
-		</div>
-	</div>
+    <div class="container-fluid" id="results-container" hidden>
+        <h1 class="display-4">Analyzing</h1>
+        <div class="card" id="results-card" style="width:400px">
+            <img class="card-img-top" src="" id="pic-image" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title" id="">Results</h4>
+                <p class="card-text" id="pic-description"></p>
+                <p class="card-text" id="pic-score"></p>
+                <a href="start.html" class="btn btn-primary">Start Again?</a>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
