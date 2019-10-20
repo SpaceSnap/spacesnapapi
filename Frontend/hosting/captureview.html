@@ -56,19 +56,31 @@
 					// code block
 				}
 			}
-		}
+        }
+        
+        function myclickhandler() {
+            $('#a-frame-container').hide();
+            $('#results-card').hide();
+            $('#results-container').removeAttr('hidden');
 
-		function myclickhandler() {
-			var sceneCanvas = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
-			var offscreenCanvas = document.createElement('canvas');
+            setTimeout(function() {
+                doCanvasWork();
+            }, 5);
+
+            
+            //showCanvas(offscreenCanvas);
+            //showBlob(dataurl);
+        }
+
+        function doCanvasWork(){
+            var sceneCanvas = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
+            var offscreenCanvas = document.createElement('canvas');
 
 			reduceCanvas(sceneCanvas, offscreenCanvas, 3);
 
-			var dataurl = offscreenCanvas.toDataURL();
-			sendBlob(dataurl);
-			//showCanvas(offscreenCanvas);
-			//showBlob(dataurl);
-		}
+            var dataurl = offscreenCanvas.toDataURL();
+            sendBlob(dataurl);
+        }
 
 		function showCanvas(canvas) {
 			var w = window.open("");
@@ -101,7 +113,8 @@
 		}
 
 		function sendBlob(dataURL) {
-			document.querySelector('#pic-image').setAttribute("src", dataURL);
+            document.querySelector('#pic-image').setAttribute("src",dataURL);
+            $('#results-card').show();
 
 			var key = "AIzaSyBM24os1UIblBdKk04ZvplQDSswBxBExak";
 			var request = {
@@ -128,7 +141,7 @@
 				error: function (data, textStatus, errorThrown) {
 					console.log('error: ' + errorThrown);
 				}
-			});
+            });
 		}
 
 		function getURL() {
@@ -143,7 +156,7 @@
 
 <body>
 	<div id="a-frame-container">
-		<a-scene>
+		<a-scene screenshot="width:4096; height:4096">
 			<a-assets>
 				<img id="iss" src="iss.jpg">
 				<img id="moon" src="moon.jpg">
@@ -153,7 +166,7 @@
 			<a-sky src="#iss" radius="100" alert-on-click=''></a-sky>
 			<a-entity id="rig" position="0 0 0">
 				<a-entity id="camera" camera look-controls position="0 1.6 0">
-					<a-cursor raycaster="objects: a-sky" fuse="false"></a-cursor>
+					<a-cursor raycaster="objects: a-sky" fuse="false" geometry="primitive: ring; radiusInner: 0.49; radiusOuter: 0.5"></a-cursor>
 				</a-entity>
 			</a-entity>
 		</a-scene>
