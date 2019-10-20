@@ -13,11 +13,10 @@
 	<link rel="stylesheet" href="capture.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="aframe-master.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<!--<script src="~/scripts/jquery-3.4.1.js"></script>-->
 	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
 	<script src="captureview.js"></script>
 	<script>
@@ -57,36 +56,36 @@
 					// code block
 				}
 			}
-        }
-        
-        function myclickhandler() {
-            var sceneCanvas = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
-            var offscreenCanvas = document.createElement('canvas');
+		}
 
-            reduceCanvas(sceneCanvas,offscreenCanvas,3);
+		function myclickhandler() {
+			var sceneCanvas = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
+			var offscreenCanvas = document.createElement('canvas');
 
-            var dataurl = offscreenCanvas.toDataURL();
-            sendBlob(dataurl);
-            //showCanvas(offscreenCanvas);
-            //showBlob(dataurl);
-        }
+			reduceCanvas(sceneCanvas, offscreenCanvas, 3);
 
-        function showCanvas(canvas){
-            var w = window.open("");
-            w.document.body.appendChild(canvas);
-        }
+			var dataurl = offscreenCanvas.toDataURL();
+			sendBlob(dataurl);
+			//showCanvas(offscreenCanvas);
+			//showBlob(dataurl);
+		}
 
-        function showBlob(dataURL){
-            var image = new Image();
-            image.src = dataURL;
+		function showCanvas(canvas) {
+			var w = window.open("");
+			w.document.body.appendChild(canvas);
+		}
 
-            var w = window.open("");
-            w.document.write(image.outerHTML);
-        }
+		function showBlob(dataURL) {
+			var image = new Image();
+			image.src = dataURL;
+
+			var w = window.open("");
+			w.document.write(image.outerHTML);
+		}
 
 		function reduceCanvas(canvasin, canvasout, factor) {
-			var sourceX = (canvasin.width - (canvasin.width / factor)) /2;
-			var sourceY = (canvasin.height - (canvasin.height / factor)) /2;
+			var sourceX = (canvasin.width - (canvasin.width / factor)) / 2;
+			var sourceY = (canvasin.height - (canvasin.height / factor)) / 2;
 			var sourceWidth = canvasin.width / factor;
 			var sourceHeight = canvasin.height / factor;
 			var destWidth = 0;
@@ -95,14 +94,14 @@
 			var outHeight = canvasin.height / factor;
 
 			canvasout.width = outWidth;
-            canvasout.height = outHeight;
+			canvasout.height = outHeight;
 
-            var imgdata = canvasin.getContext('2d').getImageData(sourceX, sourceY, sourceWidth, sourceHeight);
-            canvasout.getContext('2d').putImageData(imgdata,0,0);
+			var imgdata = canvasin.getContext('2d').getImageData(sourceX, sourceY, sourceWidth, sourceHeight);
+			canvasout.getContext('2d').putImageData(imgdata, 0, 0);
 		}
 
 		function sendBlob(dataURL) {
-            document.querySelector('#pic-image').setAttribute("src",dataURL);
+			document.querySelector('#pic-image').setAttribute("src", dataURL);
 
 			var key = "AIzaSyBM24os1UIblBdKk04ZvplQDSswBxBExak";
 			var request = {
@@ -160,15 +159,29 @@
 		</a-scene>
 	</div>
 
-	<div class="container-fluid" id="results-container" hidden>
-		<h1 class="display-4">Analyzing</h1>
-		<div class="card" id="results-card" style="width:400px">
-			<img class="card-img-top" src="" id="pic-image" alt="Card image">
-			<div class="card-body">
-				<h4 class="card-title" id="">Results</h4>
-				<p class="card-text" id="pic-description"></p>
-				<p class="card-text" id="pic-score"></p>
-				<a href="start.html" class="btn btn-primary">Start Again?</a>
+	<div id="vue-app">
+		<div class="container-fluid" id="results-container" hidden>
+			<h1 class="display-4">Analyzing</h1>
+			<div class="card" id="results-card" style="width:400px">
+				<img class="card-img-top" src="" id="pic-image" alt="Card image">
+				<div class="card-body">
+					<h4 class="card-title" id="">Results</h4>
+					<ul>
+						<li id="pic-description0"></li>
+						<li id="pic-score0"></li>
+					</ul>
+					<ul>
+						<li id="pic-description1"></li>
+						<li id="pic-score1"></li>
+					</ul>
+					<ul>
+						<li id="pic-description2"></li>
+						<li id="pic-score2"></li>
+					</ul>
+					<p class="card-text" ></p>
+					<p class="card-text" ></p>
+					<a href="start.html" class="btn btn-primary">Start Again?</a>
+				</div>
 			</div>
 		</div>
 	</div>
