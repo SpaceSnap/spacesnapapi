@@ -11,13 +11,55 @@
     <title>Space Snap Home</title>
     <meta name="description" content="360&deg; Image - A-Frame">
     <script src="aframe-master.js"></script>
+    <style>
+        /* Container holding the image and the text */
+        .container {
+            position: relative;
+            color: white;
+        }
+
+        /* Bottom left text */
+        .iis {
+            position: absolute;
+            bottom: 50px;
+            left: 300px;
+            background: white;
+        }
+
+        /* Top left text */
+        .moon {
+            position: absolute;
+            top: 175px;
+            left: 100px;
+            background: white;
+        }
+
+        /* Top right text */
+        .mars1 {
+            position: absolute;
+            top: 75px;
+            left: 250px;
+            background: white;
+        }
+
+        /* Bottom right text */
+        .mars2 {
+            position: absolute;
+            top: 155px;
+            left: 350px;
+            background: white;
+        }
+    </style>
 </head>
 
 <body>
-    <a href="captureview.html?background=0">Go to ISS</a>
-    <a href="captureview.html?background=1">Go to Moon</a>
-    <a href="captureview.html?background=2">Go to Mars</a>
-    <a href="captureview.html?background=21">Go to Mars - Site 2</a>
+    <div class="container">
+        <img src="Dashboard.jpg"></img>
+        <a class="iis" href="captureview.html?background=0">Go to ISS</a>
+        <a class="moon" href="captureview.html?background=1">Go to Moon</a>
+        <a class="mars1" href="captureview.html?background=2">Go to Mars</a>
+        <a class="mars2" href="captureview.html?background=21">Go to Mars - Site 2</a>
+    </div>
 </body>
 
 </html>
