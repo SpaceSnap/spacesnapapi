@@ -12,6 +12,7 @@
     <meta name="description" content="360&deg; Image - A-Frame">
     <link rel="stylesheet" href="capture.css">
     <script src="aframe-master.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         AFRAME.registerComponent('alert-on-click', {
             init: function () {
@@ -29,24 +30,24 @@
 
         function loadProps() {
             var props = getURL();
-            if (props.background){
+            if (props.background) {
                 var sky = document.querySelector('a-sky');
                 console.log('have background', props.background);
-                switch(props.background) {
+                switch (props.background) {
                     case "0":
-                        sky.setAttribute("src","#iss")
+                        sky.setAttribute("src", "#iss")
                         break;
                     case "1":
-                        sky.setAttribute("src","#moon")
+                        sky.setAttribute("src", "#moon")
                         break;
                     case "2":
-                        sky.setAttribute("src","#mars")
+                        sky.setAttribute("src", "#mars")
                         break;
                     case "21":
-                        sky.setAttribute("src","#mars2")
+                        sky.setAttribute("src", "#mars2")
                         break;
                     default:
-                        // code block
+                    // code block
                 }
             }
         }
@@ -57,12 +58,12 @@
 
             var sourceX = sceneCanvas.width / 4;
             var sourceY = sceneCanvas.height / 4;
-            var sourceWidth = sceneCanvas.width/2;
-            var sourceHeight = sceneCanvas.height/2;
+            var sourceWidth = sceneCanvas.width / 2;
+            var sourceHeight = sceneCanvas.height / 2;
             var destWidth = 0;
             var destHeight = 0;
             var outWidth = sceneCanvas.width / 2;
-            var outHeight = sceneCanvas.height/2;
+            var outHeight = sceneCanvas.height / 2;
 
             var offscreenCanvas = document.createElement('canvas');
             offscreenCanvas.width = outWidth;
@@ -70,30 +71,69 @@
 
 
             var context = offscreenCanvas.getContext('2d');
-            context.drawImage(sceneCanvas, sourceX, sourceY, sourceWidth, sourceHeight, destWidth, destHeight, outHeight, outerWidth );
+            context.drawImage(sceneCanvas, sourceX, sourceY, sourceWidth, sourceHeight, destWidth, destHeight, outHeight, outerWidth);
 
-            var dataURL = offscreenCanvas.toDataURL("image/jpg");
+            offscreenCanvas.toBlob(function(blob){
+                sendBlob(blob);
+            })
+        }
 
-            var downloadLink = document.createElement('a');
-            downloadLink.href = dataURL;
-            downloadLink.download = 'myImage.png';
+        function reduceCanvas(canvasin, canvasout, factor){
+            var sourceX = sceneCanvas.width / ((1-factor) / 2);
+            var sourceY = sceneCanvas.height / ((1-factor) / 2);
+            var sourceWidth = sceneCanvas.width / 2;
+            var sourceHeight = sceneCanvas.height / 2;
+            var destWidth = 0;
+            var destHeight = 0;
+            var outWidth = sceneCanvas.width / 2;
+            var outHeight = sceneCanvas.height / 2;
 
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
+            var canvasout = document.createElement('canvas');
+            canvasout.width = outWidth;
+            canvasout.height = outHeight;
+
+            var context = offscreenCanvas.getContext('2d');
+            context.drawImage(canvasin, sourceX, sourceY, sourceWidth, sourceHeight, destWidth, destHeight, outHeight, outerWidth);
+
+            return context;
         }
 
         function sendBlob(blob) {
             console.log(blob);
-            // var xmlHttp = new XMLHttpRequest();
-            // xmlHttp.open("GET", theUrl, false); // false for synchronous request
-            // xmlHttp.send(null);
-            // return xmlHttp.responseText;
+
+            var url = "https://storage.googleapis.com/cloud-vision-codelab/otter_crossing.jpg";
+            var key = "AIzaSyBM24os1UIblBdKk04ZvplQDSswBxBExak";
+            var request = {
+                "requests": [{
+                    "image": {
+                        "source": {
+                            "imageUri": url,
+                        }
+                    },
+                    "features": [{
+                        "type": "LABEL_DETECTION",
+                        "maxResults": 10
+                    }]
+                }]
+            }
+
+            $.ajax({
+                method: 'POST',
+                url: 'https://vision.googleapis.com/v1/images:annotate?key=' + key,
+                contentType: 'application/json',
+                data: JSON.stringify(request),
+                success: function (data) {
+                    console.log("Data: " + data);
+                },
+                error: function (data, textStatus, errorThrown) {
+                    console.log('error: ' + errorThrown);
+                }
+            });
         }
 
-        function getURL(){
+        function getURL() {
             var vars = {};
-            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
                 vars[key] = value;
             });
             return vars;
@@ -102,6 +142,7 @@
 </head>
 
 <body>
+    <a href="#" id="downloader" onclick="download()" download="image.png">Download!</a>
     <a-scene>
         <a-assets>
             <img id="iss" src="iss.jpg">
